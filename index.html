@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cyber Kali — Télécharger</title>
-<meta name="description" content="Cyber Kali : apprenez la cybersécurité et Kali Linux en français, du débutant à l'avancé. Près de 40 modules, CVE en direct, glossaire, défis CTF et badges.">
+<meta name="description" content="Cyber Kali : apprenez la cybersécurité et Kali Linux en français, du débutant à l'avancé. 37 cours, CVE en direct, glossaire, défis CTF et badges.">
 <meta name="theme-color" content="#090E1A">
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta property="og:title" content="Cyber Kali — La cybersécurité en français, dans votre poche">
-<meta property="og:description" content="Près de 40 modules, de Linux à Active Directory, pour apprendre la sécurité informatique pas à pas.">
+<meta property="og:description" content="37 cours, de Linux à Active Directory, pour apprendre la sécurité informatique pas à pas.">
 <meta property="og:image" content="icon-512.png">
 <style>
   :root{
@@ -75,16 +75,42 @@
   .feat svg{width:22px;height:22px}
   .feat b{display:block;font-size:15px;line-height:1.3}
   .feat p{margin:2px 0 0;color:var(--muted);font-size:13.5px;line-height:1.4}
-  .track{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:6px 16px}
-  .lvl{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
-  .lvl:last-child{border-bottom:0}
-  .tag{flex:0 0 auto;align-self:flex-start;font-size:11.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:3px 9px}
-  .t1{background:rgba(16,212,142,.14);color:#0A9E69}
-  .t2{background:rgba(59,130,246,.14);color:#2F6FDB}
-  .t3{background:rgba(255,47,199,.13);color:#C21A95}
-  @media (prefers-color-scheme: dark){.t1{color:#10D48E}.t2{color:#6EA8FF}.t3{color:#FF6AD8}}
-  .lvl p{margin:0;font-size:14px;color:var(--muted)}
-  .lvl p b{color:var(--text);font-weight:700}
+  .sub{margin:-6px 0 14px;color:var(--muted);font-size:14px}
+  .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .levels input{position:absolute;opacity:0;pointer-events:none}
+  .levels label{--c:var(--accent);cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 8px;text-align:center;transition:border-color .15s,box-shadow .15s,transform .12s}
+  .levels label:active{transform:scale(.97)}
+  .levels label b{display:block;font-size:14px}
+  .levels label span{font-size:12px;color:var(--muted)}
+  .levels input:focus-visible+label{outline:2px solid var(--c);outline-offset:2px}
+  .l1{--c:#10D48E;--c2:#00A3FF}
+  .l2{--c:#3B82F6;--c2:#7B5CFF}
+  .l3{--c:#FF2FC7;--c2:#7B2FFF}
+  #tab-l1:checked+label,#tab-l2:checked+label,#tab-l3:checked+label{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 18%,transparent)}
+  #tab-l1:checked+label b,#tab-l2:checked+label b,#tab-l3:checked+label b{color:var(--c)}
+  .lvl-panel{grid-column:1/-1;display:none;margin-top:6px}
+  #tab-l1:checked~#panel-l1,#tab-l2:checked~#panel-l2,#tab-l3:checked~#panel-l3{display:block;animation:rise .25s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){#tab-l1:checked~#panel-l1,#tab-l2:checked~#panel-l2,#tab-l3:checked~#panel-l3{animation:none}}
+  .lvl-head{position:relative;overflow:hidden;display:flex;gap:14px;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;background:linear-gradient(135deg,var(--ink) 0%,var(--ink-3) 100%);color:#E8F0FE;border-radius:20px;padding:18px;border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
+  .lvl-head::after{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--c) 35%,transparent),transparent 70%)}
+  .lvl-head>div{position:relative}
+  .lvl-kicker{font-size:11px;letter-spacing:1.2px;color:var(--c)}
+  .lvl-head b{display:block;font-size:20px;margin:2px 0}
+  .lvl-head p{margin:0;font-size:13.5px;color:rgba(232,240,254,.7);max-width:320px}
+  .lvl-nums{display:flex;gap:8px}
+  .lvl-nums span{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:6px 10px;font-size:11.5px;color:rgba(232,240,254,.65);text-align:center}
+  .lvl-nums b{font-size:16px!important;color:#fff;margin:0!important}
+  .courses{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  @media (max-width:340px){.courses{grid-template-columns:1fr}}
+  .course{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 12px 11px 14px;min-height:108px}
+  .course::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--c),var(--c2))}
+  .num{font-size:12px;font-weight:700;color:var(--c)}
+  .course b{font-size:14px;line-height:1.3;flex:1}
+  .cmeta{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap}
+  .chip{font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--text)}
+  .time{font-size:11.5px;color:var(--muted);white-space:nowrap}
+  .time::before{content:"⏱ "}
   details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:0 16px;margin-bottom:8px}
   summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
   summary::-webkit-details-marker{display:none}
@@ -109,7 +135,7 @@
     <h1>La cybersécurité,<br><em>en français, pas à pas.</em></h1>
     <p class="lead">De vos premières commandes Linux jusqu'à Active Directory et au Bug Bounty : des cours clairs, des commandes prêtes à copier et des défis pour progresser.</p>
     <div class="stats">
-      <div class="stat"><b>39</b><span>modules</span></div>
+      <div class="stat"><b>37</b><span>cours</span></div>
       <div class="stat"><b>3</b><span>niveaux</span></div>
       <div class="stat"><b>100 %</b><span>en français</span></div>
     </div>
@@ -151,10 +177,75 @@
   </div>
 
   <h2>Un parcours du débutant à l'expert</h2>
-  <div class="track">
-    <div class="lvl"><span class="tag t1">Débutant</span><p><b>Kali Linux et le terminal.</b> Installation, bureau, raccourcis, fichiers, processus, éditeurs Nano et Vim.</p></div>
-    <div class="lvl"><span class="tag t2">Intermédiaire</span><p><b>Réseaux et audit.</b> TCP/IP, ports, Nmap, SMB, FTP, SSH, OSINT, Gobuster, Hydra, John the Ripper, Wireshark.</p></div>
-    <div class="lvl"><span class="tag t3">Avancé</span><p><b>Pentest complet.</b> Metasploit, SQLMap, sécurité web, Wi-Fi, Active Directory, Windows, MitM, DoS, Bug Bounty.</p></div>
+  <p class="sub">37 cours, environ 16 heures de contenu. Choisissez un niveau :</p>
+  <div class="levels">
+    <input type="radio" name="lv" id="tab-l1" checked>
+    <label for="tab-l1" class="l1"><b>Débutant</b><span>9 cours</span></label>
+    <input type="radio" name="lv" id="tab-l2">
+    <label for="tab-l2" class="l2"><b>Intermédiaire</b><span>21 cours</span></label>
+    <input type="radio" name="lv" id="tab-l3">
+    <label for="tab-l3" class="l3"><b>Avancé</b><span>7 cours</span></label>
+    <div class="lvl-panel l1" id="panel-l1">
+      <div class="lvl-head">
+        <div><span class="lvl-kicker mono">NIVEAU DÉBUTANT</span><b>Fondamentaux</b><p>Kali Linux et le terminal : les bases pour être à l&#x27;aise sur le système.</p></div>
+        <div class="lvl-nums"><span><b>9</b>cours</span><span><b>2 h 25</b>de contenu</span></div>
+      </div>
+      <ul class="courses">
+        <li class="course"><span class="num mono">01</span><b>Installation Kali Linux</b><span class="cmeta"><span class="chip">Système</span><span class="time">15 min</span></span></li>
+        <li class="course"><span class="num mono">02</span><b>Bureau &amp; Interface Linux</b><span class="cmeta"><span class="chip">Système</span><span class="time">10 min</span></span></li>
+        <li class="course"><span class="num mono">03</span><b>Raccourcis du Terminal</b><span class="cmeta"><span class="chip">Terminal</span><span class="time">15 min</span></span></li>
+        <li class="course"><span class="num mono">04</span><b>Gestion des Fichiers</b><span class="cmeta"><span class="chip">Admin</span><span class="time">20 min</span></span></li>
+        <li class="course"><span class="num mono">05</span><b>Système de Fichiers</b><span class="cmeta"><span class="chip">Système</span><span class="time">15 min</span></span></li>
+        <li class="course"><span class="num mono">06</span><b>Fichiers de Configuration</b><span class="cmeta"><span class="chip">Config</span><span class="time">15 min</span></span></li>
+        <li class="course"><span class="num mono">07</span><b>Gestion des Processus</b><span class="cmeta"><span class="chip">Système</span><span class="time">20 min</span></span></li>
+        <li class="course"><span class="num mono">08</span><b>Diagnostic Système</b><span class="cmeta"><span class="chip">Diagnostic</span><span class="time">15 min</span></span></li>
+        <li class="course"><span class="num mono">09</span><b>Archives &amp; Flux Réseau</b><span class="cmeta"><span class="chip">Réseau</span><span class="time">20 min</span></span></li>
+      </ul>
+    </div>
+    <div class="lvl-panel l2" id="panel-l2">
+      <div class="lvl-head">
+        <div><span class="lvl-kicker mono">NIVEAU INTERMÉDIAIRE</span><b>Outils & Audit</b><p>Réseaux, services et outils d&#x27;audit : ce qu&#x27;un pentester utilise au quotidien.</p></div>
+        <div class="lvl-nums"><span><b>21</b>cours</span><span><b>9 h 30</b>de contenu</span></div>
+      </div>
+      <ul class="courses">
+        <li class="course"><span class="num mono">10</span><b>Bases des Réseaux</b><span class="cmeta"><span class="chip">Réseaux</span><span class="time">30 min</span></span></li>
+        <li class="course"><span class="num mono">11</span><b>Protocoles TCP/IP</b><span class="cmeta"><span class="chip">Protocoles</span><span class="time">25 min</span></span></li>
+        <li class="course"><span class="num mono">12</span><b>Cartographie des Ports</b><span class="cmeta"><span class="chip">Réseaux</span><span class="time">20 min</span></span></li>
+        <li class="course"><span class="num mono">13</span><b>Top 10 Outils Sécurité</b><span class="cmeta"><span class="chip">Outils</span><span class="time">20 min</span></span></li>
+        <li class="course"><span class="num mono">14</span><b>Scan Réseau avec Nmap</b><span class="cmeta"><span class="chip">Scan</span><span class="time">35 min</span></span></li>
+        <li class="course"><span class="num mono">15</span><b>Audit des Partages SMB</b><span class="cmeta"><span class="chip">Audit SMB</span><span class="time">30 min</span></span></li>
+        <li class="course"><span class="num mono">16</span><b>Audit des Serveurs FTP</b><span class="cmeta"><span class="chip">Audit FTP</span><span class="time">25 min</span></span></li>
+        <li class="course"><span class="num mono">17</span><b>Sécurisation SSH</b><span class="cmeta"><span class="chip">SSH</span><span class="time">25 min</span></span></li>
+        <li class="course"><span class="num mono">18</span><b>Reconnaissance OSINT</b><span class="cmeta"><span class="chip">OSINT</span><span class="time">30 min</span></span></li>
+        <li class="course"><span class="num mono">19</span><b>Énumération Gobuster</b><span class="cmeta"><span class="chip">Web</span><span class="time">20 min</span></span></li>
+        <li class="course"><span class="num mono">20</span><b>Audit Mots de Passe Hydra</b><span class="cmeta"><span class="chip">Auth</span><span class="time">25 min</span></span></li>
+        <li class="course"><span class="num mono">21</span><b>Audit Hash John The Ripper</b><span class="cmeta"><span class="chip">Crypto</span><span class="time">30 min</span></span></li>
+        <li class="course"><span class="num mono">22</span><b>Gestion Distante WinRM</b><span class="cmeta"><span class="chip">Windows</span><span class="time">25 min</span></span></li>
+        <li class="course"><span class="num mono">23</span><b>Éditeurs Nano &amp; Vim</b><span class="cmeta"><span class="chip">Outils</span><span class="time">20 min</span></span></li>
+        <li class="course"><span class="num mono">24</span><b>Sockets &amp; Scapy Python</b><span class="cmeta"><span class="chip">Dev</span><span class="time">35 min</span></span></li>
+        <li class="course"><span class="num mono">25</span><b>Sécurité VPN &amp; Proxies</b><span class="cmeta"><span class="chip">Réseau</span><span class="time">25 min</span></span></li>
+        <li class="course"><span class="num mono">26</span><b>Audit Réseaux Wi-Fi</b><span class="cmeta"><span class="chip">Wi-Fi</span><span class="time">30 min</span></span></li>
+        <li class="course"><span class="num mono">27</span><b>Audit Injections SQL</b><span class="cmeta"><span class="chip">Web</span><span class="time">35 min</span></span></li>
+        <li class="course"><span class="num mono">28</span><b>Analyse Risques MitM</b><span class="cmeta"><span class="chip">Réseau</span><span class="time">25 min</span></span></li>
+        <li class="course"><span class="num mono">29</span><b>Protection DoS / DDoS</b><span class="cmeta"><span class="chip">Défense</span><span class="time">25 min</span></span></li>
+        <li class="course"><span class="num mono">30</span><b>Sécurité Web &amp; Audit</b><span class="cmeta"><span class="chip">Web</span><span class="time">35 min</span></span></li>
+      </ul>
+    </div>
+    <div class="lvl-panel l3" id="panel-l3">
+      <div class="lvl-head">
+        <div><span class="lvl-kicker mono">NIVEAU AVANCÉ</span><b>Sécurité & Défense</b><p>Entreprise, forensics et pentest complet, jusqu&#x27;au Bug Bounty.</p></div>
+        <div class="lvl-nums"><span><b>7</b>cours</span><span><b>4 h 40</b>de contenu</span></div>
+      </div>
+      <ul class="courses">
+        <li class="course"><span class="num mono">31</span><b>Sécurité Active Directory</b><span class="cmeta"><span class="chip">AD</span><span class="time">45 min</span></span></li>
+        <li class="course"><span class="num mono">32</span><b>Analyse Wireshark</b><span class="cmeta"><span class="chip">Forensics</span><span class="time">40 min</span></span></li>
+        <li class="course"><span class="num mono">33</span><b>Outils CLI Modernes</b><span class="cmeta"><span class="chip">Outils</span><span class="time">25 min</span></span></li>
+        <li class="course"><span class="num mono">34</span><b>Recherche Bug Bounty</b><span class="cmeta"><span class="chip">Bounty</span><span class="time">40 min</span></span></li>
+        <li class="course"><span class="num mono">35</span><b>Sécurité des OS Windows</b><span class="cmeta"><span class="chip">Windows</span><span class="time">40 min</span></span></li>
+        <li class="course"><span class="num mono">36</span><b>Labs Pratiques Virtuels</b><span class="cmeta"><span class="chip">Labs</span><span class="time">45 min</span></span></li>
+        <li class="course"><span class="num mono">37</span><b>Framework Metasploit</b><span class="cmeta"><span class="chip">Audit</span><span class="time">45 min</span></span></li>
+      </ul>
+    </div>
   </div>
 
   <h2>Ce que fait l'application</h2>
