@@ -120,6 +120,35 @@
   details ol{padding-left:20px}
   footer{text-align:center;color:var(--muted);font-size:12.5px;padding:8px 16px 40px}
   footer a{color:var(--accent-dark)}
+  .community{margin-top:34px}
+  .community-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .community-head h2{margin-bottom:4px}
+  .community-head p{margin:0 0 14px;color:var(--muted);font-size:14px}
+  .rating-summary{font-weight:800;color:var(--accent-dark);font-size:15px;margin-bottom:14px}
+  .download-total{margin:12px 0 0;text-align:center;color:var(--muted);font-size:14px}
+  .download-total strong{color:var(--text);font-size:18px}
+  .community-grid{display:grid;gap:12px}
+  .review-form,.review{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+  .review-form h3{margin:0 0 12px;font-size:16px}
+  .review-form label{display:block;font-size:13px;font-weight:700;margin:12px 0 5px}
+  .review-form input,.review-form textarea{width:100%;font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+  .review-form textarea{min-height:100px;resize:vertical}
+  .review-form input:focus-visible,.review-form textarea:focus-visible,.stars input:focus-visible+label,.submit-review:focus-visible{outline:2px solid var(--accent-dark);outline-offset:2px}
+  .stars{display:flex;gap:5px;align-items:center}
+  .stars input{position:absolute;opacity:0;width:1px;height:1px}
+  .stars label{font-size:32px;line-height:1;color:var(--muted);cursor:pointer;margin:0;padding:2px}
+  .stars label.selected{color:var(--gold)}
+  .submit-review{margin-top:16px;border:0;background:var(--ink);color:var(--accent);border-radius:12px;padding:12px 18px;font:700 14px system-ui;cursor:pointer}
+  .submit-review:disabled{opacity:.55;cursor:wait}
+  .form-message{min-height:20px;color:var(--muted);font-size:13px;margin:8px 0 0}
+  .form-message.error{color:#c53645}
+  .review-list{display:grid;gap:10px;align-content:start}
+  .review-top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+  .review-top b{overflow-wrap:anywhere}
+  .review-stars{color:#ad8121;letter-spacing:2px;white-space:nowrap}
+  .review p{font-size:14px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;margin:8px 0}
+  .review time{font-size:12px;color:var(--muted)}
+  @media(min-width:700px){.community-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 </style>
 </head>
 <body>
@@ -167,7 +196,36 @@
         Telegram
       </a>
     </div>
+    <p class="download-total" aria-live="polite"><strong id="download-count">—</strong> téléchargements de l’APK <span id="download-note"></span></p>
   </div>
+
+  <section class="community" id="avis" aria-labelledby="avis-title">
+    <div class="community-head">
+      <div><h2 id="avis-title">Vos avis sur Cyber Kali</h2><p>Partagez votre expérience et aidez les prochains apprenants.</p></div>
+      <div class="rating-summary" id="rating-summary" aria-live="polite">Chargement des avis…</div>
+    </div>
+    <div class="community-grid">
+      <form class="review-form" id="review-form">
+        <h3>Laisser un avis</h3>
+        <label for="review-name">Votre prénom</label>
+        <input id="review-name" name="name" maxlength="40" minlength="2" autocomplete="given-name" required>
+        <label>Votre note</label>
+        <div class="stars" role="radiogroup" aria-label="Note sur cinq étoiles">
+          <input type="radio" name="rating" id="rating-1" value="1" required><label for="rating-1" aria-label="1 étoile">★</label>
+          <input type="radio" name="rating" id="rating-2" value="2"><label for="rating-2" aria-label="2 étoiles">★</label>
+          <input type="radio" name="rating" id="rating-3" value="3"><label for="rating-3" aria-label="3 étoiles">★</label>
+          <input type="radio" name="rating" id="rating-4" value="4"><label for="rating-4" aria-label="4 étoiles">★</label>
+          <input type="radio" name="rating" id="rating-5" value="5"><label for="rating-5" aria-label="5 étoiles">★</label>
+        </div>
+        <label for="review-comment">Votre expérience</label>
+        <textarea id="review-comment" name="comment" minlength="10" maxlength="600" required placeholder="Ce qui vous a aidé dans l’application…"></textarea>
+        <div hidden><label for="review-website">Site web</label><input id="review-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <button class="submit-review" type="submit">Publier mon avis</button>
+        <p class="form-message" id="form-message" role="status"></p>
+      </form>
+      <div class="review-list" id="review-list" aria-live="polite"><div class="review">Chargement des avis…</div></div>
+    </div>
+  </section>
 
   <h2>Commencer en 3 étapes</h2>
   <div class="steps">
@@ -296,26 +354,124 @@
 <footer>Cyber Kali · Guinée · <a href="https://wa.me/224624038605" target="_blank" rel="noopener">WhatsApp</a> · <a href="mailto:abdoulgoudoussediallo25@gmail.com">Contact</a></footer>
 
 <script>
-// Le bouton s'active tout seul dès qu'une release publique contient cyber-kali.apk.
 (function(){
   var APK = 'cyber-kali.apk';
-  fetch('https://api.github.com/repos/Abdoul273/cyber-kali-site/releases/latest', {headers:{Accept:'application/vnd.github+json'}})
-    .then(function(r){ return r.ok ? r.json() : null; })
-    .then(function(rel){
-      if(!rel || !rel.assets) return;
-      var a = rel.assets.filter(function(x){ return x.name === APK && x.state === 'uploaded'; })[0];
-      if(!a) return;
+  var API = 'https://abdoul.pythonanywhere.com/api/site/reviews';
+  var number = new Intl.NumberFormat('fr-FR');
+
+  async function updateDownloads(){
+    try {
+      var response = await fetch('https://api.github.com/repos/Abdoul273/cyber-kali-site/releases?per_page=100', {headers:{Accept:'application/vnd.github+json'}});
+      if(!response.ok) throw new Error('GitHub indisponible');
+      var releases = await response.json();
+      var total = 0, current = null, release = null;
+      releases.forEach(function(item){
+        if(item.draft || item.prerelease) return;
+        (item.assets || []).forEach(function(asset){
+          if(asset.name !== APK || asset.state !== 'uploaded') return;
+          total += asset.download_count || 0;
+          if(!current){current = asset; release = item;}
+        });
+      });
+      document.getElementById('download-count').textContent = number.format(total);
+      document.getElementById('download-note').textContent = '· actualisé automatiquement';
+      if(!current) return;
       var card = document.getElementById('dl'), btn = document.getElementById('dl-btn');
-      btn.href = 'https://github.com/Abdoul273/cyber-kali-site/releases/latest/download/' + APK;
+      btn.href = current.browser_download_url;
       btn.removeAttribute('aria-disabled');
       document.getElementById('dl-label').textContent = 'Télécharger pour Android';
       document.getElementById('status-text').textContent = 'Disponible';
-      document.getElementById('dl-size').textContent = '≈ ' + Math.round(a.size / 1048576) + ' Mo';
-      var v = (rel.tag_name || '').replace(/^v/, '');
-      if(v) document.getElementById('dl-version').textContent = v;
+      document.getElementById('dl-size').textContent = '≈ ' + Math.round(current.size / 1048576) + ' Mo';
+      var version = (release.tag_name || '').replace(/^v/, '');
+      if(version) document.getElementById('dl-version').textContent = version;
       card.classList.add('ready');
-    })
-    .catch(function(){});
+    } catch(e) {
+      document.getElementById('download-note').textContent = '· données momentanément indisponibles';
+    }
+  }
+
+  async function updateReviews(){
+    try {
+      var response = await fetch(API, {cache:'no-store'});
+      if(!response.ok) throw new Error('Avis indisponibles');
+      var data = await response.json();
+      document.getElementById('rating-summary').textContent = data.count ?
+        '★ ' + Number(data.average).toFixed(1).replace('.', ',') + '/5 · ' + number.format(data.count) + ' avis' :
+        'Aucun avis pour le moment';
+      var list = document.getElementById('review-list');
+      list.replaceChildren();
+      if(!data.reviews.length){
+        var empty = document.createElement('div');
+        empty.className = 'review';
+        empty.textContent = 'Soyez la première personne à donner votre avis.';
+        list.appendChild(empty);
+      }
+      data.reviews.forEach(function(review){
+        var article = document.createElement('article');
+        article.className = 'review';
+        var top = document.createElement('div');
+        top.className = 'review-top';
+        var name = document.createElement('b');
+        name.textContent = review.name;
+        var stars = document.createElement('span');
+        stars.className = 'review-stars';
+        stars.setAttribute('aria-label', review.rating + ' étoiles sur 5');
+        stars.textContent = '★'.repeat(review.rating) + '☆'.repeat(5-review.rating);
+        top.append(name, stars);
+        var comment = document.createElement('p');
+        comment.textContent = review.comment;
+        var date = document.createElement('time');
+        date.dateTime = review.created_at + 'Z';
+        date.textContent = new Date(date.dateTime).toLocaleDateString('fr-FR', {day:'numeric',month:'long',year:'numeric'});
+        article.append(top, comment, date);
+        list.appendChild(article);
+      });
+    } catch(e) {
+      document.getElementById('rating-summary').textContent = 'Avis momentanément indisponibles';
+      document.getElementById('review-list').textContent = 'Impossible de charger les avis. Réessayez plus tard.';
+    }
+  }
+
+  var form = document.getElementById('review-form');
+  function paintStars(){
+    var value = Number(form.querySelector('input[name="rating"]:checked')?.value || 0);
+    form.querySelectorAll('.stars label').forEach(function(label, i){label.classList.toggle('selected', i < value);});
+  }
+  form.querySelectorAll('input[name="rating"]').forEach(function(input){input.addEventListener('change', paintStars);});
+  form.addEventListener('submit', async function(event){
+    event.preventDefault();
+    if(!form.reportValidity()) return;
+    var button = form.querySelector('button[type="submit"]');
+    var message = document.getElementById('form-message');
+    button.disabled = true;
+    message.classList.remove('error');
+    message.textContent = 'Publication en cours…';
+    try {
+      var response = await fetch(API, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+        name:form.elements.name.value.trim(),
+        rating:Number(form.querySelector('input[name="rating"]:checked').value),
+        comment:form.elements.comment.value.trim(),
+        website:form.elements.website.value
+      })});
+      var data = await response.json();
+      if(!response.ok) throw new Error(data.error || 'Publication impossible.');
+      form.reset();
+      paintStars();
+      message.textContent = 'Merci ! Votre avis est publié.';
+      await updateReviews();
+    } catch(e) {
+      message.classList.add('error');
+      message.textContent = e.message || 'Connexion impossible. Réessayez.';
+    } finally {button.disabled = false;}
+  });
+
+  updateDownloads();
+  updateReviews();
+  setInterval(function(){if(!document.hidden) updateDownloads();}, 90000);
+  setInterval(function(){if(!document.hidden) updateReviews();}, 15000);
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden){updateDownloads(); updateReviews();}
+  });
 })();
 </script>
 </body>
