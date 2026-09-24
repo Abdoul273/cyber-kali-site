@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cyber Kali — Télécharger</title>
+<meta name="description" content="Cyber Kali : apprenez la cybersécurité et Kali Linux en français, du débutant à l'avancé. Près de 40 modules, CVE en direct, glossaire, défis CTF et badges.">
+<meta name="theme-color" content="#090E1A">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta property="og:title" content="Cyber Kali — La cybersécurité en français, dans votre poche">
+<meta property="og:description" content="Près de 40 modules, de Linux à Active Directory, pour apprendre la sécurité informatique pas à pas.">
+<meta property="og:image" content="icon-512.png">
+<style>
+  :root{
+    --deep:#05080F; --ink:#090E1A; --ink-2:#0D1526; --ink-3:#131E30;
+    --accent:#00F5C3; --accent-dark:#00896D; --accent-blue:#0066FF; --pink:#FF2FC7; --gold:#E5B94E;
+    --accent-light:#E6FFF9; --on-accent:#04221B;
+    --bg:#F6F8FB; --surface:#FFFFFF; --text:#141A24; --muted:#5F6B7E; --line:#E3E8EF;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#090E1A; --surface:#0F182B; --text:#E8F0FE; --muted:#8899BB; --line:#1E2E4A; --accent-light:rgba(0,245,195,.10); --accent-dark:#00F5C3; }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  code,.mono{font-family:ui-monospace,"JetBrains Mono","Fira Code",Menlo,Consolas,monospace}
+  .hero{background:radial-gradient(120% 90% at 85% 0%,rgba(0,102,255,.35) 0%,transparent 55%),radial-gradient(90% 70% at 0% 100%,rgba(255,47,199,.18) 0%,transparent 60%),linear-gradient(160deg,var(--deep) 0%,var(--ink) 50%,var(--ink-2) 100%);color:#E8F0FE;padding:28px 20px 96px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(0,245,195,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,195,.06) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(180deg,#000 0%,transparent 85%);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 85%)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;position:relative}
+  .brand img{width:36px;height:36px;border-radius:10px;background:var(--ink-3);border:1px solid rgba(0,245,195,.3)}
+  .flag{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:5px 10px}
+  .flag i{display:inline-block;width:16px;height:11px;border-radius:2px;background:linear-gradient(90deg,#CE1126 0 33%,#FCD116 33% 66%,#009460 66%)}
+  .hero-body{position:relative;max-width:560px;margin:48px auto 0;text-align:center}
+  .logo{width:128px;height:128px;border-radius:32px;background:radial-gradient(circle at 50% 35%,#1A2540 0%,#0B1222 75%);border:1px solid rgba(0,245,195,.35);box-shadow:0 0 0 6px rgba(0,245,195,.06),0 20px 60px rgba(0,245,195,.18);padding:8px}
+  .term{display:inline-block;margin-top:22px;font-size:13px;color:var(--accent);background:rgba(0,245,195,.08);border:1px solid rgba(0,245,195,.25);border-radius:8px;padding:4px 10px}
+  .term::after{content:"_";animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion: reduce){.term::after{animation:none}}
+  h1{font-size:31px;line-height:1.15;letter-spacing:-.3px;margin:14px 0 10px;font-weight:800}
+  h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent),#4DA3FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{color:rgba(232,240,254,.8);font-size:16px;margin:0 auto;max-width:450px}
+  .stats{position:relative;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:22px auto 0;max-width:460px}
+  .stat{flex:1 1 0;min-width:96px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:10px 8px}
+  .stat b{display:block;font-size:20px;color:#fff}
+  .stat span{font-size:12px;color:rgba(232,240,254,.65)}
+  .panel{max-width:560px;margin:-60px auto 0;padding:0 16px 48px;position:relative}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:22px 20px;box-shadow:0 16px 40px rgba(0,0,0,.12)}
+  .status{display:flex;align-items:center;gap:8px;justify-content:center;font-size:13px;font-weight:700;margin:0 0 14px;color:var(--muted)}
+  .dot{width:9px;height:9px;border-radius:50%;background:#FFB800;box-shadow:0 0 0 4px rgba(255,184,0,.18)}
+  .ready .dot{background:#10D48E;box-shadow:0 0 0 4px rgba(16,212,142,.2)}
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px 18px;border-radius:16px;font-weight:800;font-size:17px;text-decoration:none;border:0;cursor:pointer;transition:transform .12s ease}
+  .btn:active{transform:scale(.98)}
+  .btn-main{background:linear-gradient(90deg,var(--accent) 0%,#00D1E0 100%);color:var(--on-accent);box-shadow:0 10px 26px rgba(0,245,195,.3)}
+  .btn-main[aria-disabled="true"]{background:var(--line);color:var(--muted);box-shadow:none;cursor:default;pointer-events:none}
+  .btn-ghost{background:var(--accent-light);color:var(--accent-dark);margin-top:10px;font-size:15px;font-weight:700}
+  .meta{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:12px 0 0}
+  .notice{margin-top:14px;background:var(--accent-light);color:var(--text);border-left:4px solid var(--accent);border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.45}
+  .notice b{color:var(--accent-dark)}
+  .ready .soon-only{display:none}
+  .card:not(.ready) .ready-only{display:none}
+  .contact{display:flex;gap:8px;margin-top:10px}
+  .contact a{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;border-radius:12px;border:1px solid var(--line);text-decoration:none;font-weight:700;font-size:14px}
+  .contact svg{width:18px;height:18px}
+  h2{font-size:18px;margin:32px 0 12px;letter-spacing:-.2px}
+  .steps{display:grid;gap:10px}
+  .step{display:flex;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 16px}
+  .n{flex:0 0 32px;height:32px;border-radius:50%;background:var(--ink);color:var(--accent);border:1px solid rgba(0,245,195,.5);font-weight:800;display:grid;place-items:center;font-size:14px}
+  .step b{display:block;font-size:15px}
+  .step p{margin:2px 0 0;color:var(--muted);font-size:14px}
+  .feats{display:grid;grid-template-columns:1fr;gap:10px}
+  @media (min-width:520px){.feats{grid-template-columns:1fr 1fr}}
+  .feat{display:flex;align-items:flex-start;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px}
+  .feat .ic{flex:0 0 40px;height:40px;border-radius:12px;background:var(--ink);color:var(--accent);display:grid;place-items:center}
+  .feat svg{width:22px;height:22px}
+  .feat b{display:block;font-size:15px;line-height:1.3}
+  .feat p{margin:2px 0 0;color:var(--muted);font-size:13.5px;line-height:1.4}
+  .track{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:6px 16px}
+  .lvl{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+  .lvl:last-child{border-bottom:0}
+  .tag{flex:0 0 auto;align-self:flex-start;font-size:11.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;border-radius:999px;padding:3px 9px}
+  .t1{background:rgba(16,212,142,.14);color:#0A9E69}
+  .t2{background:rgba(59,130,246,.14);color:#2F6FDB}
+  .t3{background:rgba(255,47,199,.13);color:#C21A95}
+  @media (prefers-color-scheme: dark){.t1{color:#10D48E}.t2{color:#6EA8FF}.t3{color:#FF6AD8}}
+  .lvl p{margin:0;font-size:14px;color:var(--muted)}
+  .lvl p b{color:var(--text);font-weight:700}
+  details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:0 16px;margin-bottom:8px}
+  summary{cursor:pointer;padding:14px 0;font-weight:700;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--muted);font-size:20px;font-weight:400}
+  details[open] summary::after{content:"–"}
+  details p,details ol{color:var(--muted);font-size:14px;margin:0 0 14px}
+  details ol{padding-left:20px}
+  footer{text-align:center;color:var(--muted);font-size:12.5px;padding:8px 16px 40px}
+  footer a{color:var(--accent-dark)}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="brand">
+    <img src="icon-192.png" alt="">
+    Cyber Kali
+    <span class="flag"><i></i>Guinée</span>
+  </div>
+  <div class="hero-body">
+    <img class="logo" src="icon-512.png" alt="Icône Cyber Kali">
+    <div><span class="term mono">root@kali:~# apprendre</span></div>
+    <h1>La cybersécurité,<br><em>en français, pas à pas.</em></h1>
+    <p class="lead">De vos premières commandes Linux jusqu'à Active Directory et au Bug Bounty : des cours clairs, des commandes prêtes à copier et des défis pour progresser.</p>
+    <div class="stats">
+      <div class="stat"><b>39</b><span>modules</span></div>
+      <div class="stat"><b>3</b><span>niveaux</span></div>
+      <div class="stat"><b>100 %</b><span>en français</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="panel">
+  <div class="card" id="dl">
+    <p class="status"><span class="dot"></span><span id="status-text">En cours de finalisation</span></p>
+    <a class="btn btn-main" id="dl-btn" href="#" aria-disabled="true" download>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.1-.17.04-.4-.13-.5a.37.37 0 0 0-.5.13l-1.86 3.22a11.2 11.2 0 0 0-9.9 0L5.19 5.93a.37.37 0 0 0-.5-.13c-.17.1-.23.33-.13.5L6.4 9.48A10.6 10.6 0 0 0 1 18h22a10.6 10.6 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+      <span id="dl-label">Bientôt disponible</span>
+    </a>
+    <a class="btn btn-ghost" href="#installer">Comment installer ?</a>
+    <div class="meta">
+      <span>Version <b id="dl-version">1.0.0</b></span>
+      <span class="ready-only" id="dl-size"></span>
+      <span>Android 5.0+</span>
+    </div>
+    <p class="notice soon-only"><b>L'application arrive très bientôt.</b> Les derniers réglages sont en cours. Ce bouton s'activera tout seul dès que la version Android sera en ligne : revenez sur cette page, ou demandez à être prévenu.</p>
+    <p class="notice ready-only"><b>Vous aviez une ancienne version ?</b> Si le téléphone refuse l'installation, désinstallez d'abord l'ancienne application, puis installez celle-ci.</p>
+    <div class="contact">
+      <a href="https://wa.me/224624038605?text=Bonjour%2C%20je%20veux%20%C3%AAtre%20pr%C3%A9venu%20de%20la%20sortie%20de%20Cyber%20Kali" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="#25D366"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.01c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.93-4.66-4.11-.13-.18-1.11-1.48-1.11-2.83s.71-2 .96-2.28c.25-.27.55-.34.73-.34l.52.01c.17.01.39-.06.61.47.24.55.8 1.9.87 2.04.07.14.12.3.02.48-.09.18-.14.3-.27.46l-.41.48c-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.11.59-.07.16-.18.68-.8.86-1.07.18-.27.36-.23.61-.14.25.09 1.59.75 1.86.89.27.14.45.2.52.32.07.11.07.66-.17 1.3z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://t.me/Anoroot" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="#229ED9"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.64 6.8-1.64 7.74c-.12.55-.45.68-.91.42l-2.5-1.84-1.2 1.16c-.13.13-.25.25-.51.25l.18-2.55 4.64-4.19c.2-.18-.04-.28-.31-.1l-5.74 3.61-2.47-.77c-.54-.17-.55-.54.11-.8l9.65-3.72c.45-.16.84.11.7.79z"/></svg>
+        Telegram
+      </a>
+    </div>
+  </div>
+
+  <h2>Commencer en 3 étapes</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><div><b>Installez l'application</b><p>Avec le bouton ci-dessus, puis ouvrez-la.</p></div></div>
+    <div class="step"><div class="n">2</div><div><b>Créez votre profil</b><p>Un prénom, un pays, une photo si vous voulez : pas de compte ni de mot de passe à retenir.</p></div></div>
+    <div class="step"><div class="n">3</div><div><b>Suivez le parcours</b><p>Commencez par le niveau Débutant, validez les modules un par un et gagnez vos badges.</p></div></div>
+  </div>
+
+  <h2>Un parcours du débutant à l'expert</h2>
+  <div class="track">
+    <div class="lvl"><span class="tag t1">Débutant</span><p><b>Kali Linux et le terminal.</b> Installation, bureau, raccourcis, fichiers, processus, éditeurs Nano et Vim.</p></div>
+    <div class="lvl"><span class="tag t2">Intermédiaire</span><p><b>Réseaux et audit.</b> TCP/IP, ports, Nmap, SMB, FTP, SSH, OSINT, Gobuster, Hydra, John the Ripper, Wireshark.</p></div>
+    <div class="lvl"><span class="tag t3">Avancé</span><p><b>Pentest complet.</b> Metasploit, SQLMap, sécurité web, Wi-Fi, Active Directory, Windows, MitM, DoS, Bug Bounty.</p></div>
+  </div>
+
+  <h2>Ce que fait l'application</h2>
+  <div class="feats">
+    <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2zm0 14H4V8h16v10zm-2-1h-6v-2h6v2zM7.5 17l-1.41-1.41L8.67 13l-2.59-2.59L7.5 9l4 4-4 4z"/></svg></span><div><b>Commandes prêtes à copier</b><p>Chaque cours donne les vraies commandes, expliquées une par une.</p></div></div>
+    <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span><div><b>CVE en temps réel</b><p>Les failles récentes et l'actualité cyber, triées par gravité.</p></div></div>
+    <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg></span><div><b>Défis CTF</b><p>Mettez vos connaissances à l'épreuve avec des challenges à résoudre.</p></div></div>
+    <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg></span><div><b>Glossaire complet</b><p>Tous les termes de la cybersécurité expliqués simplement.</p></div></div>
+    <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V19H7v2h10v-2h-4v-3.1a5.01 5.01 0 0 0 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg></span><div><b>Badges &amp; progression</b><p>Chaque module validé vous rapproche du prochain badge.</p></div></div>
+    <div class="feat"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg></span><div><b>Roadmap &amp; labs</b><p>Le chemin conseillé pour devenir pentester, et les labs pour pratiquer.</p></div></div>
+  </div>
+
+  <h2 id="installer">Questions fréquentes</h2>
+  <details open>
+    <summary>Comment installer l'application ?</summary>
+    <ol>
+      <li>Touchez « Télécharger pour Android » puis ouvrez le fichier <b>cyber-kali.apk</b> (barre de notifications ou dossier Téléchargements).</li>
+      <li>Si le téléphone affiche « Pour votre sécurité… », touchez <b>Paramètres</b> puis autorisez <b>Chrome</b> (ou votre navigateur) à installer des applications.</li>
+      <li>Revenez en arrière et touchez <b>Installer</b>.</li>
+    </ol>
+  </details>
+  <details>
+    <summary>Faut-il un ordinateur ou Kali Linux ?</summary>
+    <p>Non, pour lire les cours le téléphone suffit. Pour pratiquer les commandes, il vous faudra ensuite Kali Linux (sur un PC, dans une machine virtuelle ou avec des labs en ligne) : le premier module explique comment l'installer.</p>
+  </details>
+  <details>
+    <summary>L'application est-elle payante ?</summary>
+    <p>Non. Pour l'instant, tous les modules, y compris ceux marqués Premium, sont accessibles gratuitement.</p>
+  </details>
+  <details>
+    <summary>Faut-il Internet ?</summary>
+    <p>Une connexion est utile pour les CVE et l'actualité en direct. Les cours eux-mêmes sont intégrés à l'application.</p>
+  </details>
+  <details>
+    <summary>Ai-je le droit d'utiliser ces techniques ?</summary>
+    <p>Uniquement sur vos propres machines, sur des labs prévus pour ça (TryHackMe, Hack The Box…) ou avec l'autorisation écrite du propriétaire du système. Attaquer un système sans autorisation est illégal. Cyber Kali apprend à comprendre les attaques pour mieux s'en défendre.</p>
+  </details>
+  <details>
+    <summary>Pourquoi l'application n'est pas sur le Play Store ?</summary>
+    <p>Elle est distribuée directement ici pour le moment. Ne l'installez que depuis cette page ou depuis un lien envoyé par l'auteur.</p>
+  </details>
+</main>
+
+<footer>Cyber Kali · Guinée · <a href="https://wa.me/224624038605" target="_blank" rel="noopener">WhatsApp</a> · <a href="mailto:abdoulgoudoussediallo25@gmail.com">Contact</a></footer>
+
+<script>
+// Le bouton s'active tout seul dès qu'une release publique contient cyber-kali.apk.
+(function(){
+  var APK = 'cyber-kali.apk';
+  fetch('https://api.github.com/repos/Abdoul273/cyber-kali-site/releases/latest', {headers:{Accept:'application/vnd.github+json'}})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(rel){
+      if(!rel || !rel.assets) return;
+      var a = rel.assets.filter(function(x){ return x.name === APK && x.state === 'uploaded'; })[0];
+      if(!a) return;
+      var card = document.getElementById('dl'), btn = document.getElementById('dl-btn');
+      btn.href = 'https://github.com/Abdoul273/cyber-kali-site/releases/latest/download/' + APK;
+      btn.removeAttribute('aria-disabled');
+      document.getElementById('dl-label').textContent = 'Télécharger pour Android';
+      document.getElementById('status-text').textContent = 'Disponible';
+      document.getElementById('dl-size').textContent = '≈ ' + Math.round(a.size / 1048576) + ' Mo';
+      var v = (rel.tag_name || '').replace(/^v/, '');
+      if(v) document.getElementById('dl-version').textContent = v;
+      card.classList.add('ready');
+    })
+    .catch(function(){});
+})();
+</script>
+</body>
+</html>
